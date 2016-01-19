@@ -12,7 +12,7 @@ return [
             'rules' => [
                 '/' => 'site/index',
 
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/user'],
 
                 '<_c:[\w\-]+>/<_a:[\w\-]+>' => '<_c>/<_a>',
                 '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
@@ -21,10 +21,5 @@ return [
 
             ],
         ],
-        'request' => [
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ]
-        ]
     ],
 ];
