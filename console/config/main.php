@@ -12,7 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
     'controllerMap' => [
-        'migrate'=>[
+        'migrate' => [
             'class'=>'console\controllers\MigrateController',
             'migrationLookup'=>[
                 '@mdm/admin/migrations',
@@ -21,7 +21,10 @@ return [
                 '@mdm/upload/migrations',
                 // add other migration path here
             ]
-        ]
+        ],
+        'rbac' => [
+            'class' => 'console\controllers\RbacController',
+        ],
     ],
     'components' => [
         'log' => [
