@@ -16,6 +16,7 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
+ * @property string $access_token
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
@@ -136,6 +137,14 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public function getAccessToken()
+    {
+        return $this->access_token;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
@@ -163,6 +172,15 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Generates access token  and sets it to the model
+
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = Yii::$app->security->generateRandomString();
+    }
+
+    /**
      * Generates "remember me" authentication key
      */
     public function generateAuthKey()
@@ -184,5 +202,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * Set access_token before save new user
+     */
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            $this->generateAccessToken();
+        }
+        return parent::beforeSave($insert);
     }
 }
