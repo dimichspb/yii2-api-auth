@@ -75,6 +75,8 @@ class RbacController extends \yii\console\Controller
             $this->stdout($admin->name . " role has been added\n");
         }
         $auth->addChild($admin, $countriesAdmin);
+
+        $auth->assign($admin, 1);
     }
 
     public function actionRemoveAll()

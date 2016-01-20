@@ -2,9 +2,10 @@
 
 namespace api\modules\v1\controllers;
 
+use Yii;
 use yii\rest\ActiveController;
-use yii\web\Response;
-use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+//use yii\web\Response;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -19,6 +20,14 @@ class CountryController extends ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Country';
 
+    private $accessRules = [
+        'index' => 'getCountriesList',
+        'view' => 'getCountryDetails',
+        'create' => 'createCountryDetails',
+        'update' => 'updateCountryDetails',
+        'delete' => 'deleteCountryDetails',
+    ];
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -32,16 +41,13 @@ class CountryController extends ActiveController
             ],
         ];
 
-        $behaviors['access'] = [
-            'class' => AccessControl::className(),
-            'rules' => [
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
-                ],
-            ],
-        ];
-
         return $behaviors;
+    }
+
+    public function checkAccess($action, $model = null, $params = [])
+    {
+         if (!isset($this->accessRules[$action]) || !Yii::$app->user->can($this->accessRules[$action])) {
+             throw new ForbiddenHttpException;
+         }
     }
 }
