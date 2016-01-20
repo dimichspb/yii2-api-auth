@@ -1,9 +1,9 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php')
-//    require(__DIR__ . '/params.php'),
-//    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/../../common/config/params-local.php'),
+    require(__DIR__ . '/params.php'),
+    require(__DIR__ . '/params-local.php')
 );
 
 return [
@@ -30,6 +30,9 @@ return [
                 ],
             ],
         ],
+//        'errorHandler' => [
+//            'errorAction' => 'site/error',
+//        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
@@ -39,11 +42,11 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/country',   // our country api rule,
                     'tokens' => [
-                            '{id}' => '<id:\\w+>'
+                        '{id}' => '<id:\\w+>'
                     ],
                 ],
             ],
-        ]
+        ],
     ],
     'params' => $params,
 ];
