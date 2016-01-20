@@ -205,12 +205,12 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Set access_token before save new user
+     * Do some changes before save user into DB
      */
     public function beforeSave($insert)
     {
         if ($insert) {
-            $this->generateAccessToken();
+            $this->generateAccessToken(); //Set access_token before save new user
         }
         return parent::beforeSave($insert);
     }
