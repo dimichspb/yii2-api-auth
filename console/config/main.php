@@ -11,6 +11,18 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
+    'controllerMap' => [
+        'migrate'=>[
+            'class'=>'console\controllers\MigrateController',
+            'migrationLookup'=>[
+                '@mdm/admin/migrations',
+                '@mdm/autonumber/migrations',
+                '@yii/rbac/migrations',
+                '@mdm/upload/migrations',
+                // add other migration path here
+            ]
+        ]
+    ],
     'components' => [
         'log' => [
             'targets' => [
@@ -20,6 +32,7 @@ return [
                 ],
             ],
         ],
+
     ],
     'params' => $params,
 ];
