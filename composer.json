@@ -1,16 +1,13 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
+    "name": "dimichspb/yii2-api-auth",
+    "description": "Yii 2 Advanced Project Template with API and authorization",
     "keywords": ["yii2", "framework", "advanced", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "homepage": "https://github.com/dimichspb/yii2-api-auth",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "issues": "https://github.com/dimichspb/yii2-api-auth/issues?state=open",
+        "source": "https://github.com/dimichspb/yii2-api-auth"
     },
     "minimum-stability": "stable",
     "require": {
